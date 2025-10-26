@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core">
+
+<ui:composition template="/plantillas/layout.xhtml">
+
+    <ui:define name="titulo">Gestión de Títulos</ui:define>
+
+    <ui:define name="contenido">
+
+        <section class="encabezado">
+            <h1 class="titulo-pagina">Gestión de Títulos</h1>
+            <p class="descripcion">
+                Administra películas y series registradas en tu catálogo multimedia.
+            </p>
+        </section>
+
+        <h:form id="formTitulos" styleClass="contenedor-crud">
+
+            <p:growl id="msgs" showDetail="true" />
+
+            <div class="barra-superior">
+                <p:commandButton value="Nuevo Título" icon="pi pi-plus"
+                                 actionListener="#{tituloBean.nuevo}"
+                                 update=":formTitulos:dialogTitulo"
+                                 oncomplete="PF('dlgTitulo').show()"
+                                 styleClass="boton-rojo"/>
+            </div>
+
+            <p:dataTable id="tabla" value="#{tituloBean.lista}" var="t"
+                         paginator="true" rows="6"
+                         emptyMessage="No hay títulos registrados."
+                         styleClass="tabla-titulos" responsiveLayout="scroll">
+
+                <p:column headerText="ID" style="width:50px;">
+                    <h:outputText value="#{t.id}" />
+                </p:column>
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{t.nombre}" />
+                </p:column>
+
+                <p:column headerText="Tipo">
+                    <h:outputText value="#{t.tipoTitulo}" />
+                </p:column>
+
+                <p:column headerText="Año de Lanzamiento">
+                    <h:outputText value="#{t.anioLanzamiento}" />
+                </p:column>
+
+                <p:column headerText="Acciones" style="width:150px; text-align:center;">
+                    <p:commandButton icon="pi pi-pencil" title="Editar"
+                                     actionListener="#{tituloBean.editar(t)}"
+                                     update=":formTitulos:dialogTitulo"
+                                     oncomplete="PF('dlgTitulo').show()"
+                                     styleClass="ui-button-info ui-button-outlined" />
+                    <p:commandButton icon="pi pi-trash" title="Eliminar"
+                                     actionListener="#{tituloBean.eliminar(t.id)}"
+                                     update="tabla msgs"
+                                     styleClass="ui-button-danger ui-button-outlined"
+                                     onclick="return confirm('¿Eliminar este título?');" />
+                </p:column>
+
+            </p:dataTable>
+
+            <!-- Diálogo de crear/editar -->
+            <p:dialog id="dialogTitulo" header="Datos del Título"
+                      widgetVar="dlgTitulo" modal="true"
+                      resizable="false" width="450">
+
+                <h:panelGrid columns="2" cellpadding="5" styleClass="panel-form">
+
+                    <h:outputLabel for="nombre" value="Nombre:" />
+                    <p:inputText id="nombre" value="#{tituloBean.titulo.nombre}"
+                                 required="true" requiredMessage="El nombre es obligatorio."/>
+
+                    <h:outputLabel for="tipo" value="Tipo:" />
+                    <p:selectOneMenu id="tipo" value="#{tituloBean.titulo.tipoTitulo}">
+                        <f:selectItem itemLabel="Seleccione..." itemValue="#{null}" />
+                        <f:selectItems value="#{tituloBean.tipos}" var="tipo"
+                                       itemLabel="#{tipo}" itemValue="#{tipo}" />
+                    </p:selectOneMenu>
+
+                    <h:outputLabel for="anio" value="Año:" />
+                    <p:inputNumber id="anio" value="#{tituloBean.titulo.anioLanzamiento}" />
+
+                </h:panelGrid>
+
+                <f:facet name="footer">
+                    <div class="pie-dialogo">
+                        <p:commandButton value="Guardar" icon="pi pi-save"
+                                         actionListener="#{tituloBean.guardar}"
+                                         update="tabla msgs"
+                                         styleClass="boton-rojo"
+                                         oncomplete="PF('dlgTitulo').hide()" />
+                        <p:commandButton value="Cancelar" type="button"
+                                         icon="pi pi-times"
+                                         onclick="PF('dlgTitulo').hide()" />
+                    </div>
+                </f:facet>
+            </p:dialog>
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+</html>

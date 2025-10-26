@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html"
@@ -7,20 +6,59 @@
 
 <h:head>
     <title><ui:insert name="titulo">CatalogoApp</ui:insert></title>
-    <meta charset="UTF-8"/>
-    <link rel="icon" type="image/png" href="#{request.contextPath}/resources/img/icon.png"/>
+
+    <!-- estilos globales -->
+    <link rel="stylesheet"
+          type="text/css"
+          href="#{request.contextPath}/css/index.css" />
 </h:head>
 
-<h:body style="font-family: 'Segoe UI', sans-serif; background-color:#f4f6f8; margin:0;">
+<h:body styleClass="cuerpo">
 
-    <ui:include src="encabezado.xhtml"/>
+    <!-- BARRA SUPERIOR -->
+    <header class="barra-superior">
+        <div class="barra-contenido">
+            <div class="barra-logo">CatalogoApp</div>
 
-    <div style="padding:2rem;">
-        <ui:insert name="contenido"/>
-    </div>
+            <nav class="barra-links">
+                <h:link outcome="/paginas/dashboard.xhtml" styleClass="link-nav">
+                    <i class="pi pi-home"></i>
+                    <span>Inicio</span>
+                </h:link>
 
-    <footer style="background:#bc2b3c; color:white; text-align:center; padding:1rem; margin-top:2rem;">
-        <p>© #{java.time.Year.now()} CatalogoApp — Proyecto de Programación IV</p>
+                <h:link outcome="/paginas/titulos.xhtml" styleClass="link-nav">
+                    <i class="pi pi-video"></i>
+                    <span>Títulos</span>
+                </h:link>
+
+                <h:link outcome="/paginas/generos.xhtml" styleClass="link-nav">
+                    <i class="pi pi-list"></i>
+                    <span>Géneros</span>
+                </h:link>
+
+                <h:link outcome="/paginas/archivos.xhtml" styleClass="link-nav">
+                    <i class="pi pi-file"></i>
+                    <span>Archivos</span>
+                </h:link>
+
+                <h:link outcome="/paginas/consultas.xhtml" styleClass="link-nav">
+                    <i class="pi pi-chart-bar"></i>
+                    <span>Consultas</span>
+                </h:link>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CONTENIDO VARIABLE -->
+    <main class="zona-contenido">
+        <ui:insert name="contenido">
+            <p>Ningún contenido disponible</p>
+        </ui:insert>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="pie">
+        © CatalogoApp — Proyecto de Programación V
     </footer>
 
 </h:body>

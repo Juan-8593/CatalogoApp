@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/plantillas/layout.xhtml">
+
+    <ui:define name="titulo">Inicio | CatalogoApp</ui:define>
+
+    <ui:define name="contenido">
+
+        <section class="encabezado-dashboard">
+            <h1 class="titulo-app">Bienvenido a CatalogoApp</h1>
+            <p class="subtitulo-app">
+                Administra tu catálogo de películas, series, géneros y archivos técnicos.
+            </p>
+        </section>
+
+        <section class="grid-opciones">
+
+            <div class="tarjeta-opcion">
+                <div class="tarjeta-icono">
+                    <i class="pi pi-video"></i>
+                </div>
+                <div class="tarjeta-info">
+                    <h2 class="tarjeta-titulo">Títulos</h2>
+                    <p class="tarjeta-desc">
+                        Películas y series registradas en el sistema.
+                    </p>
+                    <h:link outcome="/paginas/titulos.xhtml" styleClass="boton-rojo">
+                        <i class="pi pi-arrow-right"></i>
+                        <span>Ver Títulos</span>
+                    </h:link>
+                </div>
+            </div>
+
+            <div class="tarjeta-opcion">
+                <div class="tarjeta-icono">
+                    <i class="pi pi-list"></i>
+                </div>
+                <div class="tarjeta-info">
+                    <h2 class="tarjeta-titulo">Géneros</h2>
+                    <p class="tarjeta-desc">
+                        Acción, drama, comedia, terror, etc.
+                    </p>
+                    <h:link outcome="/paginas/generos.xhtml" styleClass="boton-rojo">
+                        <i class="pi pi-arrow-right"></i>
+                        <span>Ver Géneros</span>
+                    </h:link>
+                </div>
+            </div>
+
+            <div class="tarjeta-opcion">
+                <div class="tarjeta-icono">
+                    <i class="pi pi-file"></i>
+                </div>
+                <div class="tarjeta-info">
+                    <h2 class="tarjeta-titulo">Archivos</h2>
+                    <p class="tarjeta-desc">
+                        Posters, fichas técnicas y recursos adjuntos.
+                    </p>
+                    <h:link outcome="/paginas/archivos.xhtml" styleClass="boton-rojo">
+                        <i class="pi pi-arrow-right"></i>
+                        <span>Ver Archivos</span>
+                    </h:link>
+                </div>
+            </div>
+
+            <div class="tarjeta-opcion">
+                <div class="tarjeta-icono">
+                    <i class="pi pi-chart-bar"></i>
+                </div>
+                <div class="tarjeta-info">
+                    <h2 class="tarjeta-titulo">Consultas</h2>
+                    <p class="tarjeta-desc">
+                        Totales, estadísticas y métricas.
+                    </p>
+                    <h:link outcome="/paginas/consultas.xhtml" styleClass="boton-rojo">
+                        <i class="pi pi-arrow-right"></i>
+                        <span>Ir a Consultas</span>
+                    </h:link>
+                </div>
+            </div>
+
+        </section>
+
+    </ui:define>
+
+</ui:composition>
+</html>

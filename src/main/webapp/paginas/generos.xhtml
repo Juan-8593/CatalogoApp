@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core">
+
+<ui:composition template="/plantillas/layout.xhtml">
+
+    <ui:define name="titulo">Gestión de Géneros</ui:define>
+
+    <ui:define name="contenido">
+
+        <section class="encabezado">
+            <h1 class="titulo-pagina">Gestión de Géneros</h1>
+            <p class="descripcion">
+                Administra los géneros disponibles para clasificar películas y series.
+            </p>
+        </section>
+
+        <h:form id="formGeneros" styleClass="contenedor-crud">
+
+            <p:growl id="msgs" showDetail="true" />
+
+            <div class="barra-superior">
+                <h:panelGrid columns="2" cellpadding="5" styleClass="form-inline">
+                    <h:outputLabel for="nombre" value="Nuevo Género:" styleClass="label-inline"/>
+                    <p:inputText id="nombre" value="#{generoBean.nombre}" maxlength="100" />
+                    <f:facet name="footer">
+                        <p:commandButton value="Agregar" icon="pi pi-plus"
+                                         actionListener="#{generoBean.agregar}"
+                                         update="tabla msgs nombre"
+                                         styleClass="boton-rojo" />
+                    </f:facet>
+                </h:panelGrid>
+            </div>
+
+            <p:dataTable id="tabla" value="#{generoBean.lista}" var="g"
+                         paginator="true" rows="6"
+                         emptyMessage="No hay géneros registrados."
+                         styleClass="tabla-generos" responsiveLayout="scroll">
+
+                <p:column headerText="ID" style="width:60px; text-align:center;">
+                    <h:outputText value="#{g.id}" />
+                </p:column>
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{g.nombre}" />
+                </p:column>
+
+                <p:column headerText="Acción" style="width:120px; text-align:center;">
+                    <p:commandButton icon="pi pi-trash" title="Eliminar"
+                                     actionListener="#{generoBean.eliminar(g.id)}"
+                                     update="tabla msgs"
+                                     styleClass="ui-button-danger ui-button-outlined"
+                                     onclick="return confirm('¿Eliminar este género?');" />
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

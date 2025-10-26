@@ -1,16 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="jakarta.faces.html"
-      xmlns:p="http://primefaces.org/ui">
+<!-- encabezado.xhtml -->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="jakarta.faces.facelets">
 
-<h:body>
     <p:menubar style="background:#1a237e; color:white;">
-        <p:menuitem value="Inicio" outcome="/index.xhtml" icon="pi pi-home"/>
+        <p:menuitem value="Inicio" outcome="/paginas/dashboard.xhtml" icon="pi pi-home"/>
         <p:menuitem value="Títulos" outcome="/paginas/titulos.xhtml" icon="pi pi-video"/>
         <p:menuitem value="Géneros" outcome="/paginas/generos.xhtml" icon="pi pi-list"/>
         <p:menuitem value="Archivos" outcome="/paginas/archivos.xhtml" icon="pi pi-file"/>
         <p:menuitem value="Consultas" outcome="/paginas/consultas.xhtml" icon="pi pi-chart-bar"/>
     </p:menubar>
-</h:body>
-</html>
+
+</ui:composition>

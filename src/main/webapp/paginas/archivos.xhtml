@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="jakarta.faces.facelets">
+
+<ui:composition template="/plantillas/layout.xhtml">
+
+    <ui:define name="title">Archivos</ui:define>
+
+    <ui:define name="content">
+        <h:form id="formArchivos">
+            <h2>Gestión de Archivos Multimedia</h2>
+            <p:growl id="msgs" showDetail="true" />
+
+            <p:panel header="Subida de Archivos" style="max-width:600px;margin:auto;">
+                <p:fileUpload mode="advanced"
+                              dragDropSupport="true"
+                              multiple="true"
+                              update="msgs"
+                              fileLimit="5"
+                              allowTypes="/(\.|\/)(png|jpg|jpeg|pdf)$/"
+                              label="Seleccionar archivos"
+                              description="Formatos permitidos: JPG, PNG, PDF" />
+            </p:panel>
+
+            <p:separator/>
+
+            <p:dataTable id="tabla" value="#{archivoBean.lista}" var="a"
+                         paginator="true" rows="5" responsiveLayout="scroll"
+                         emptyMessage="No hay archivos registrados.">
+                <p:column headerText="ID">
+                    <h:outputText value="#{a.id}" />
+                </p:column>
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{a.nombre}" />
+                </p:column>
+                <p:column headerText="Tipo">
+                    <h:outputText value="#{a.tipoArchivo}" />
+                </p:column>
+                <p:column headerText="Acción">
+                    <p:commandButton icon="pi pi-trash" title="Eliminar"
+                                     actionListener="#{archivoBean.eliminar(a.id)}"
+                                     update="tabla msgs"
+                                     styleClass="ui-button-danger"
+                                     onclick="return confirm('¿Eliminar este archivo?');" />
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+</html>

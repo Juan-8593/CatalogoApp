@@ -1,10 +1,11 @@
 package com.juanpirir.catalogoapp.entidad;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "titulo")
-public class Titulo {
+@Table(name = "titulos")
+public class Titulo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +21,21 @@ public class Titulo {
     @Column(name = "anio_lanzamiento")
     private Integer anioLanzamiento;
 
+    public Titulo() {}
+
+    public Titulo(String nombre, TipoTitulo tipoTitulo, Integer anioLanzamiento) {
+        this.nombre = nombre;
+        this.tipoTitulo = tipoTitulo;
+        this.anioLanzamiento = anioLanzamiento;
+    }
+
+    @PrePersist
+    public void validarAntesDeGuardar() {
+        if (tipoTitulo == null) {
+            tipoTitulo = TipoTitulo.PELICULA;
+        }
+    }
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -31,4 +47,9 @@ public class Titulo {
 
     public Integer getAnioLanzamiento() { return anioLanzamiento; }
     public void setAnioLanzamiento(Integer anioLanzamiento) { this.anioLanzamiento = anioLanzamiento; }
+
+    @Override
+    public String toString() {
+        return nombre + " (" + tipoTitulo + ")";
+    }
 }

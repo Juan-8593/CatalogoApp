@@ -1,0 +1,210 @@
+/* ==========
+   GENERAL
+   ========== */
+
+body.cuerpo {
+    margin: 0;
+    background-color: #f5f5f5;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: #1a1a1a;
+}
+
+/* ==========
+   TOP BAR
+   ========== */
+
+.barra-superior {
+    background-color: #b71c1c;
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,.25);
+}
+
+.barra-contenido {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: .8rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.barra-logo {
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: .03em;
+    white-space: nowrap;
+}
+
+.barra-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.link-nav {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    color: #fff;
+    font-size: .9rem;
+    text-decoration: none;
+    font-weight: 500;
+    background: rgba(255,255,255,0.06);
+    padding: .5rem .75rem;
+    border-radius: .5rem;
+    line-height: 1;
+    transition: all .15s ease;
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+.link-nav:hover {
+    background: rgba(255,255,255,0.14);
+}
+
+/* iconos primefaces */
+.link-nav .pi {
+    font-size: .9rem;
+    line-height: 1;
+}
+
+/* ==========
+   CONTENIDO
+   ========== */
+
+.zona-contenido {
+    max-width: 1200px;
+    margin: 2rem auto 4rem auto;
+    padding: 0 1rem;
+}
+
+/* Encabezado del dashboard */
+
+.encabezado-dashboard {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.titulo-app {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #7f0f16; /* rojo más oscuro para el título */
+}
+
+.subtitulo-app {
+    margin: .5rem auto 0 auto;
+    max-width: 600px;
+    color: #555;
+    font-size: .95rem;
+    line-height: 1.4;
+}
+
+/* ==========
+   GRID DE OPCIONES
+   ========== */
+
+.grid-opciones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px,100%), 1fr));
+    gap: 1.5rem;
+}
+
+/* Tarjeta */
+
+.tarjeta-opcion {
+    background: #fff;
+    border-radius: .75rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,.07);
+    border: 1px solid rgba(0,0,0,.05);
+    padding: 1.25rem 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: box-shadow .15s ease, transform .15s ease;
+}
+
+.tarjeta-opcion:hover {
+    box-shadow: 0 14px 34px rgba(0,0,0,.12);
+    transform: translateY(-2px);
+}
+
+.tarjeta-icono {
+    flex-shrink: 0;
+    background-color: #fff0f0;
+    color: #b71c1c;
+    border: 2px solid #b71c1c;
+    border-radius: .75rem;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.tarjeta-icono .pi {
+    font-size: 1.2rem;
+}
+
+.tarjeta-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.tarjeta-titulo {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.tarjeta-desc {
+    margin: .4rem 0 1rem 0;
+    font-size: .9rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+/* Botón rojo */
+
+.boton-rojo {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background-color: #b71c1c;
+    color: white;
+    font-size: .85rem;
+    font-weight: 500;
+    text-decoration: none;
+    padding: .55rem .9rem;
+    border-radius: .5rem;
+    line-height: 1;
+    transition: all .15s ease;
+    border: 1px solid #7f0f16;
+}
+
+.boton-rojo:hover {
+    background-color: #7f0f16;
+    box-shadow: 0 8px 20px rgba(183,28,28,.4);
+    text-decoration: none;
+    color: #fff;
+}
+
+.boton-rojo .pi {
+    font-size: .9rem;
+}
+
+/* ==========
+   FOOTER
+   ========== */
+
+.pie {
+    background-color: #b71c1c;
+    color: #fff;
+    text-align: center;
+    font-size: .8rem;
+    padding: .75rem 1rem;
+    line-height: 1.4;
+    box-shadow: 0 -2px 6px rgba(0,0,0,.25);
+}

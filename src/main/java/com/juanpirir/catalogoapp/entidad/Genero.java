@@ -15,8 +15,6 @@ public class Genero {
     @Size(min = 3, max = 50)
     @Column(name = "nombre", unique = true, length = 50, nullable = false)
     private String nombre;
-
-    // Getters y Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
