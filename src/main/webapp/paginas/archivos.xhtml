@@ -3,52 +3,85 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="jakarta.faces.facelets">
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core">
 
 <ui:composition template="/plantillas/layout.xhtml">
 
-    <ui:define name="title">Archivos</ui:define>
+    <ui:define name="titulo">Gestión de Archivos</ui:define>
 
-    <ui:define name="content">
-        <h:form id="formArchivos">
-            <h2>Gestión de Archivos Multimedia</h2>
+    <ui:define name="contenido">
+
+        <section class="encabezado">
+            <h1 class="titulo-pagina">Gestión de Archivos Multimedia</h1>
+            <p class="descripcion">
+                Sube, visualiza y administra archivos relacionados con los títulos multimedia.
+            </p>
+        </section>
+
+        <h:form id="formArchivos" styleClass="contenedor-crud">
             <p:growl id="msgs" showDetail="true" />
 
-            <p:panel header="Subida de Archivos" style="max-width:600px;margin:auto;">
-                <p:fileUpload mode="advanced"
-                              dragDropSupport="true"
-                              multiple="true"
-                              update="msgs"
-                              fileLimit="5"
-                              allowTypes="/(\.|\/)(png|jpg|jpeg|pdf)$/"
-                              label="Seleccionar archivos"
-                              description="Formatos permitidos: JPG, PNG, PDF" />
-            </p:panel>
-
-            <p:separator/>
+            <div class="barra-superior">
+                <p:commandButton value="Nuevo Archivo" icon="pi pi-upload"
+                                 actionListener="#{archivoBean.nuevo}"
+                                 update=":formArchivos:dialogArchivo"
+                                 oncomplete="PF('dlgArchivo').show()"
+                                 styleClass="boton-rojo" />
+            </div>
 
             <p:dataTable id="tabla" value="#{archivoBean.lista}" var="a"
-                         paginator="true" rows="5" responsiveLayout="scroll"
-                         emptyMessage="No hay archivos registrados.">
-                <p:column headerText="ID">
+                         paginator="true" rows="6" responsiveLayout="scroll"
+                         emptyMessage="No hay archivos registrados."
+                         styleClass="tabla-archivos">
+
+                <p:column headerText="ID" style="width:60px; text-align:center;">
                     <h:outputText value="#{a.id}" />
                 </p:column>
+
                 <p:column headerText="Nombre">
                     <h:outputText value="#{a.nombre}" />
                 </p:column>
+
                 <p:column headerText="Tipo">
                     <h:outputText value="#{a.tipoArchivo}" />
                 </p:column>
-                <p:column headerText="Acción">
+
+                <p:column headerText="Acciones" style="width:150px; text-align:center;">
                     <p:commandButton icon="pi pi-trash" title="Eliminar"
                                      actionListener="#{archivoBean.eliminar(a.id)}"
                                      update="tabla msgs"
-                                     styleClass="ui-button-danger"
+                                     styleClass="ui-button-danger ui-button-outlined"
                                      onclick="return confirm('¿Eliminar este archivo?');" />
                 </p:column>
+
             </p:dataTable>
+
+            <p:dialog id="dialogArchivo" header="Subir nuevo archivo"
+                      widgetVar="dlgArchivo" modal="true" resizable="false" width="480">
+
+                <h:panelGrid columns="1" cellpadding="5" styleClass="panel-form">
+
+                    <h:outputLabel value="Seleccione un archivo (JPG, PNG, PDF):" />
+                    <p:fileUpload listener="#{archivoBean.subir}"
+                                  mode="advanced"
+                                  dragDropSupport="true"
+                                  update="msgs tabla"
+                                  auto="true"
+                                  label="Seleccionar"
+                                  fileLimit="1"
+                                  allowTypes="/(\.|\/)(png|jpg|jpeg|pdf)$/"
+                                  style="width:100%" />
+                </h:panelGrid>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Cerrar" type="button"
+                                     icon="pi pi-times"
+                                     onclick="PF('dlgArchivo').hide()" />
+                </f:facet>
+
+            </p:dialog>
         </h:form>
     </ui:define>
-
 </ui:composition>
 </html>

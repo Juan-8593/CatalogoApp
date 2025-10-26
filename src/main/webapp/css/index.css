@@ -1,6 +1,3 @@
-/* ==========
-   GENERAL
-   ========== */
 
 body.cuerpo {
     margin: 0;
@@ -9,9 +6,6 @@ body.cuerpo {
     color: #1a1a1a;
 }
 
-/* ==========
-   TOP BAR
-   ========== */
 
 .barra-superior {
     background-color: #b71c1c;

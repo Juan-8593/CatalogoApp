@@ -7,7 +7,6 @@
 <h:head>
     <title><ui:insert name="titulo">CatalogoApp</ui:insert></title>
 
-    <!-- estilos globales -->
     <link rel="stylesheet"
           type="text/css"
           href="#{request.contextPath}/css/index.css" />
@@ -15,7 +14,6 @@
 
 <h:body styleClass="cuerpo">
 
-    <!-- BARRA SUPERIOR -->
     <header class="barra-superior">
         <div class="barra-contenido">
             <div class="barra-logo">CatalogoApp</div>
@@ -40,25 +38,18 @@
                     <i class="pi pi-file"></i>
                     <span>Archivos</span>
                 </h:link>
-
-                <h:link outcome="/paginas/consultas.xhtml" styleClass="link-nav">
-                    <i class="pi pi-chart-bar"></i>
-                    <span>Consultas</span>
-                </h:link>
             </nav>
         </div>
     </header>
 
-    <!-- CONTENIDO VARIABLE -->
     <main class="zona-contenido">
         <ui:insert name="contenido">
             <p>Ningún contenido disponible</p>
         </ui:insert>
     </main>
 
-    <!-- FOOTER -->
     <footer class="pie">
-        © CatalogoApp — Proyecto de Programación V
+        CatalogoApp — Hellyeah
     </footer>
 
 </h:body>
