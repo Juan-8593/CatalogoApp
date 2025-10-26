@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title><ui:insert name="titulo">CatalogoApp</ui:insert></title>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/png" href="#{request.contextPath}/resources/img/icon.png"/>
+</h:head>
+
+<h:body style="font-family: 'Segoe UI', sans-serif; background-color:#f4f6f8; margin:0;">
+
+    <ui:include src="encabezado.xhtml"/>
+
+    <div style="padding:2rem;">
+        <ui:insert name="contenido"/>
+    </div>
+
+    <footer style="background:#bc2b3c; color:white; text-align:center; padding:1rem; margin-top:2rem;">
+        <p>© #{java.time.Year.now()} CatalogoApp — Proyecto de Programación IV</p>
+    </footer>
+
+</h:body>
+</html>

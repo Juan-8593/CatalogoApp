@@ -4,46 +4,93 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.JuanPirir.CatalogoApp</groupId>
+    <groupId>com.juanpirir.catalogoapp</groupId>
     <artifactId>CatalogoApp</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>CatalogoApp</name>
+    <version>1.0.0</version>
     <packaging>war</packaging>
+
+    <name>CatalogoApp</name>
+    <description>Aplicación Jakarta EE 10 con PrimeFaces, Hibernate y PostgreSQL</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.target>21</maven.compiler.target>
         <maven.compiler.source>21</maven.compiler.source>
-        <junit.version>5.11.0</junit.version>
+        <maven.compiler.target>21</maven.compiler.target>
+
+        <jakartaee.version>10.0.0</jakartaee.version>
+        <primefaces.version>13.0.5</primefaces.version>
+        <hibernate.version>6.6.1.Final</hibernate.version>
+        <postgresql.version>42.7.3</postgresql.version>
+        <jaxb.version>4.0.2</jaxb.version>
+        <wildfly.plugin.version>5.0.0.Final</wildfly.plugin.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>jakarta.platform</groupId>
-            <artifactId>jakarta.jakartaee-api</artifactId>
-            <version>11.0.0-M4</version>
+            <artifactId>jakarta.jakartaee-web-api</artifactId>
+            <version>${jakartaee.version}</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>15.0.0</version>
+            <classifier>jakarta</classifier>
         </dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>${jaxb.version}</version>
         </dependency>
     </dependencies>
 
     <build>
+        <finalName>CatalogoApp</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.12.1</version>
+                <configuration>
+                    <release>21</release>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.4.0</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>${wildfly.plugin.version}</version>
+                <configuration>
+                    <hostname>localhost</hostname>
+                    <port>9990</port>
+                    <username>admin</username>
+                    <password>admin</password>
+                    <filename>CatalogoApp.war</filename>
+                </configuration>
             </plugin>
         </plugins>
     </build>

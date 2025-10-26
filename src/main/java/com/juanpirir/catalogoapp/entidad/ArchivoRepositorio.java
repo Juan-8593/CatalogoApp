@@ -1,8 +1,5 @@
-package com.juanpirir.catalogoapp.repositorio;
+package com.juanpirir.catalogoapp.entidad;
 
-import com.juanpirir.catalogoapp.entidad.ArchivoMultimedia;
-import com.juanpirir.catalogoapp.entidad.Titulo;
-import com.juanpirir.catalogoapp.entidad.TipoArchivo;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
